@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #0f1117;
+  --color-card: #1a1d27;
+  --color-card-hover: #20242f;
+  --color-accent: #4f6ef7;
+  --color-danger: #ef4444;
+  --color-warning: #f59e0b;
+  --color-success: #10b981;
+  --color-muted: #8b90a0;
+  --color-border: #2a2e3b;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+body {
+  background: var(--color-background);
+  color: #e6e8ee;
+  font-family: var(--font-sans);
+}
+
+/* Relatório em PDF (rota /report): preserva o tema escuro na impressão */
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .print-report,
+  .print-report * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body {
+    background: var(--color-background) !important;
+  }
+
+  /* Evita cortar cards, títulos e linhas de tabela entre páginas */
+  .print-report .rounded-xl,
+  .print-report tr {
+    break-inside: avoid;
+  }
+
+  .print-report h2,
+  .print-report h3 {
+    break-after: avoid;
+  }
+}

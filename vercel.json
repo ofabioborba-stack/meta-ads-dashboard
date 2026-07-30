@@ -1,0 +1,28 @@
+{
+  "crons": [
+    {
+      "path": "/api/meta/sync-metrics",
+      "schedule": "0 9 * * *"
+    },
+    {
+      "path": "/api/meta/sync",
+      "schedule": "5 9 * * *"
+    },
+    {
+      "path": "/api/meta/sync",
+      "schedule": "5 12 * * *"
+    },
+    {
+      "path": "/api/meta/sync",
+      "schedule": "5 15 * * *"
+    },
+    {
+      "path": "/api/meta/sync",
+      "schedule": "5 18 * * *"
+    },
+    {
+      "path": "/api/social/sync",
+      "schedule": "15 9 * * *"
+    }
+  ]
+}
