@@ -11,15 +11,13 @@
 alter table account_balance
   add column if not exists is_prepaid boolean not null default true;
 
--- Marca as contas pós-pagas existentes (Infecto Academy, Elenita Guimarães,
--- CEM). Novas contas são classificadas automaticamente no sync diário.
-update account_balance
-set is_prepaid = false, balance = null
-where account_id in (
-  select id from client_accounts
-  where account_id in (
-    'act_721488727049303',
-    'act_638954473667420',
-    'act_214904843294820'
-  )
-);
+-- Contas pós-pagas (cartão de crédito) não têm saldo disponível.
+-- O sync diário detecta automaticamente via funding_source_details.type.
+-- Se quiser marcar contas existentes como pós-pagas manualmente:
+--
+-- update account_balance
+-- set is_prepaid = false, balance = null
+-- where account_id in (
+--   select id from client_accounts
+--   where account_id in ('act_SEU_ID_AQUI')
+-- );
